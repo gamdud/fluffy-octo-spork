@@ -29,4 +29,4 @@ jobs:
         run: seleniumbase install chromedriver
 
       - name: Run SeleniumBase Proxy Test
-        run: pytest test_proxy.py --proxy=${{ secrets.PROXY_URL }} --browser=chrome --headless
+        run: pytest test_proxy.py --proxy=${{ secrets.PROXY_URL }} --browser=chrome --headless -s
