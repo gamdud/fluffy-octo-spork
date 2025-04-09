@@ -3,8 +3,6 @@ name: SeleniumBase Proxy Test
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   test:
@@ -22,5 +20,13 @@ jobs:
       - name: Install SeleniumBase
         run: pip install seleniumbase
 
+      - name: Install Google Chrome
+        run: |
+          sudo apt update
+          sudo apt install -y google-chrome-stable
+
+      - name: Install Chromedriver
+        run: seleniumbase install chromedriver
+
       - name: Run SeleniumBase Proxy Test
-        run: pytest test_proxy.py --proxy=${{ secrets.PROXY_URL }}
+        run: pytest test_proxy.py --proxy=${{ secrets.PROXY_URL }} --browser=chrome --headless
